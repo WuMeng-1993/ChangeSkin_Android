@@ -11,7 +11,7 @@ public class ContextHolder {
 
     private static Context mContext;
 
-    private static void setContext(Context context) {
+    public static void setContext(Context context) {
         mContext = context;
     }
 

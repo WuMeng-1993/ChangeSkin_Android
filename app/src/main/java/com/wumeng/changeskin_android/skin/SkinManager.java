@@ -52,7 +52,7 @@ public class SkinManager {
      * @param observer
      */
     public static void attach(ISkinUpdateListener observer) {
-        if (observer == null) {
+        if (mSkinObservers == null) {
             mSkinObservers = new ArrayList<>();
         }
 

@@ -17,4 +17,14 @@ public class SkinConfig {
      */
     public static final String SKIN_NAME_DEFAULT = "default";
 
+    /**
+     * 换肤的命名空间
+     */
+    public static final String NAME_SPACE = "http://schemas.android.com/android/skin";
+
+    /**
+     *
+     */
+    public static final String ATTR_SKIN_ENABLE = "enable";
+
 }

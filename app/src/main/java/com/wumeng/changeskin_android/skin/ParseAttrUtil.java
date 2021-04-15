@@ -1,5 +1,6 @@
 package com.wumeng.changeskin_android.skin;
 
+import android.content.res.Resources;
 import android.content.res.XmlResourceParser;
 import android.util.AttributeSet;
 import android.util.Xml;
@@ -53,6 +54,27 @@ public class ParseAttrUtil {
                         if ("id".equals(attrName)) {
                             viewId = Integer.parseInt(attrValue.substring(1));
                         }
+
+                        if (AttrUtil.isSupportAttr(attrName) && attrValue.startsWith("@")){
+                            try {
+                                int id = Integer.parseInt(attrValue.substring(1));
+                                if (id == 0) {
+                                    continue;
+                                }
+
+                                String entryName = ContextHolder.getContext().getResources().getResourceEntryName(id);
+                                String typeName = ContextHolder.getContext().getResources().getResourceTypeName(id);
+                                AbstractSkinAttr mSkinAttr = AttrUtil.get(attrName,id,entryName,typeName);
+
+                                if (mSkinAttr != null) {
+                                    viewAttr.add(mSkinAttr);
+                                }
+                            } catch (NumberFormatException exception) {
+                                exception.printStackTrace();
+                            }
+
+                        }
+
                     }
                 }
 

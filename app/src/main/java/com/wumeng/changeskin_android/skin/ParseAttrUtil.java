@@ -1,6 +1,5 @@
 package com.wumeng.changeskin_android.skin;
 
-import android.content.res.Resources;
 import android.content.res.XmlResourceParser;
 import android.util.AttributeSet;
 import android.util.Xml;
@@ -24,7 +23,7 @@ import java.util.Map;
  */
 public class ParseAttrUtil {
 
-    public static Map<View, SkinItem> xmlLayoutParser(View rootView, int layoutXmlId) {
+    public static Map<View, SkinItem> xmlLayoutParser(View view, int layoutXmlId) {
         Map<View, SkinItem> mSkinItemMap = new HashMap<>(16);
 
         // 没有布局ID
@@ -35,6 +34,7 @@ public class ParseAttrUtil {
         try {
             XmlResourceParser parser = null;
             parser = ContextHolder.getContext().getResources().getLayout(layoutXmlId);
+            // 当解析器移动的时候，获取每个标记的属性值
             AttributeSet attributeSet = Xml.asAttributeSet(parser);
 
             int type;
@@ -44,6 +44,7 @@ public class ParseAttrUtil {
                 }
 
                 List<AbstractSkinAttr> viewAttr = new ArrayList<>();
+                // 检索命名空间下的属性的值
                 boolean isEnable = attributeSet.getAttributeBooleanValue(SkinConfig.NAME_SPACE, SkinConfig.ATTR_SKIN_ENABLE, false);
                 if (isEnable) {
                     int viewId = 0;
@@ -55,6 +56,7 @@ public class ParseAttrUtil {
                             viewId = Integer.parseInt(attrValue.substring(1));
                         }
 
+                        // 如果属性值是引用类型，比如：@color/red
                         if (AttrUtil.isSupportAttr(attrName) && attrValue.startsWith("@")){
                             try {
                                 int id = Integer.parseInt(attrValue.substring(1));

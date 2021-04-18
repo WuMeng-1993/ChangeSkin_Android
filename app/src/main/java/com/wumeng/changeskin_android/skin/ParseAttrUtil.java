@@ -23,6 +23,12 @@ import java.util.Map;
  */
 public class ParseAttrUtil {
 
+    /**
+     * 解析XML布局
+     * @param view
+     * @param layoutXmlId
+     * @return
+     */
     public static Map<View, SkinItem> xmlLayoutParser(View view, int layoutXmlId) {
         Map<View, SkinItem> mSkinItemMap = new HashMap<>(16);
 
@@ -34,7 +40,7 @@ public class ParseAttrUtil {
         try {
             XmlResourceParser parser = null;
             parser = ContextHolder.getContext().getResources().getLayout(layoutXmlId);
-            // 当解析器移动的时候，获取每个标记的属性值
+            // 当解析器移动的时候，会自动获取每个控件的属性值
             AttributeSet attributeSet = Xml.asAttributeSet(parser);
 
             int type;
@@ -49,6 +55,7 @@ public class ParseAttrUtil {
                 if (isEnable) {
                     int viewId = 0;
                     for (int i = 0; i < attributeSet.getAttributeCount(); i++) {
+                        // eg: Layout_Width
                         String attrName = attributeSet.getAttributeName(i);
                         String attrValue = attributeSet.getAttributeValue(i);
 
@@ -64,7 +71,9 @@ public class ParseAttrUtil {
                                     continue;
                                 }
 
+                                // common_100dp
                                 String entryName = ContextHolder.getContext().getResources().getResourceEntryName(id);
+                                // dimen
                                 String typeName = ContextHolder.getContext().getResources().getResourceTypeName(id);
                                 AbstractSkinAttr mSkinAttr = AttrUtil.get(attrName,id,entryName,typeName);
 
@@ -78,6 +87,7 @@ public class ParseAttrUtil {
                         }
 
                     }
+                    if ()
                 }
 
             }

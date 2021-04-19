@@ -20,4 +20,17 @@ public class SkinItem {
         attrs = new ArrayList<>();
     }
 
+    /**
+     * 执行换肤操作
+     */
+    public void apply() {
+        if (SkinListUtil.isEmpty(attrs)) {
+            return;
+        }
+
+        for (AbstractSkinAttr attr : attrs) {
+            attr.apply(view);
+        }
+    }
+
 }

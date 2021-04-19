@@ -62,6 +62,22 @@ public class SkinManager {
     }
 
     /**
+     * 判断是否是默认皮肤
+     * @return
+     */
+    public static boolean isExternalSkin() {
+        return isCurrentDefaultSkin();
+    }
+
+    /**
+     * 当前皮肤是否是默认皮肤
+     * @return
+     */
+    public static boolean isCurrentDefaultSkin() {
+        return SkinConfig.SKIN_NAME_DEFAULT.equals(CURRENT_SKIN) || "".equals(CURRENT_SKIN);
+    }
+
+    /**
      * 将ISkinUpdateListener实现类移除列表
      * @param observer
      */

@@ -40,6 +40,10 @@ public abstract class AbstractSkinAttr implements Cloneable {
         applySkin(view);
     }
 
+    /**
+     * 执行换肤
+     * @param view
+     */
     protected abstract void applySkin(View view);
 
     @Override

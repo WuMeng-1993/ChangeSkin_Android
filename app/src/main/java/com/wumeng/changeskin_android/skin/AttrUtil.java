@@ -15,6 +15,7 @@ public class AttrUtil {
 
         mSupportAttr.put("layout_width",new ViewAttr());
         mSupportAttr.put("layout_height",new ViewAttr());
+        mSupportAttr.put("src",new ImageViewSrcAttr());
 
     }
 

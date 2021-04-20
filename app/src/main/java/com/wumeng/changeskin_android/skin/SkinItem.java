@@ -12,8 +12,14 @@ import java.util.List;
  */
 public class SkinItem {
 
+    /**
+     * 需要换肤的控件View
+     */
     public View view;
 
+    /**
+     * 换肤控件View对应的属性
+     */
     public List<AbstractSkinAttr> attrs;
 
     public SkinItem() {

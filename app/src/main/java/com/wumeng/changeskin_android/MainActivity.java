@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements ISkinUpdateListen
     }
 
     /**
-     * 换肤
+     * 换肤的通知
      */
     @Override
     public void onThemeUpdate() {

@@ -10,7 +10,7 @@ import android.content.Context;
 public class SkinResourcesUtil {
 
     public static float getDimen(int redId) {
-
+        return 100.0f;
     }
 
 }

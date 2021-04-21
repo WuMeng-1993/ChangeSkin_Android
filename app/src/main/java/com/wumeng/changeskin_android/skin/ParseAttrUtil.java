@@ -31,6 +31,7 @@ public class ParseAttrUtil {
      * @return
      */
     public static Map<View, SkinItem> xmlLayoutParser(View rootView, int layoutXmlId) {
+
         Map<View, SkinItem> mSkinItemMap = new HashMap<>(16);
 
         // 没有布局ID
@@ -47,7 +48,7 @@ public class ParseAttrUtil {
             AttributeSet attributeSet = Xml.asAttributeSet(parser);
 
             int type;
-            while ((((type = parser.next()) != XmlResourceParser.END_DOCUMENT))) {
+            while ((((type = parser.next()) != XmlPullParser.END_DOCUMENT))) {
                 if (type != XmlPullParser.START_TAG) {
                     continue;
                 }
@@ -63,13 +64,15 @@ public class ParseAttrUtil {
                         String attrName = attributeSet.getAttributeName(i);
                         String attrValue = attributeSet.getAttributeValue(i);
 
+                        // 此ID是控件的ID
                         if ("id".equals(attrName)) {
                             viewId = Integer.parseInt(attrValue.substring(1));
                         }
 
-                        // 如果属性值是引用类型，比如：@color/red
+                        // 如果支持此属性，并且此属性值是引用类型，比如：@color/red
                         if (AttrUtil.isSupportAttr(attrName) && attrValue.startsWith("@")) {
                             try {
+                                // 此ID是属性资源的ID
                                 int id = Integer.parseInt(attrValue.substring(1));
                                 if (id == 0) {
                                     continue;
@@ -79,11 +82,11 @@ public class ParseAttrUtil {
                                 String entryName = ContextHolder.getContext().getResources().getResourceEntryName(id);
                                 // dimen
                                 String typeName = ContextHolder.getContext().getResources().getResourceTypeName(id);
+
                                 AbstractSkinAttr mSkinAttr = AttrUtil.get(attrName, id, entryName, typeName);
 
-                                if (mSkinAttr != null) {
-                                    viewAttr.add(mSkinAttr);
-                                }
+                                viewAttr.add(mSkinAttr);
+
                             } catch (NumberFormatException exception) {
                                 exception.printStackTrace();
                             }

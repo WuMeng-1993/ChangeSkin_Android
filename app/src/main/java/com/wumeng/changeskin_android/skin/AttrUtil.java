@@ -30,10 +30,6 @@ public class AttrUtil {
 
     public static AbstractSkinAttr get(String attrName, int id, String entryName, String typeName) {
         AbstractSkinAttr mSkinAttr = mSupportAttr.get(attrName).clone();
-        if (mSkinAttr == null) {
-            return null;
-        }
-
         mSkinAttr.attrName = attrName;
         mSkinAttr.attrValueRefId = id;
         mSkinAttr.attrValueRefName = entryName;

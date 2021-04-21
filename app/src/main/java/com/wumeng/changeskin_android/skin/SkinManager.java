@@ -74,7 +74,7 @@ public class SkinManager {
      * @return
      */
     public static boolean isCurrentDefaultSkin() {
-        return SkinConfig.SKIN_NAME_DEFAULT.equals(CURRENT_SKIN) || "".equals(CURRENT_SKIN);
+        return CURRENT_SKIN.equals(SkinConfig.SKIN_NAME_DEFAULT);
     }
 
     /**

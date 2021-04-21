@@ -11,6 +11,8 @@ public abstract class AbstractSkinAttr implements Cloneable {
 
     public static final String RES_TYPE_NAME_LAYOUT_WIDTH = "layout_width";
     public static final String RES_TYPE_NAME_LAYOUT_HEIGHT = "layout_height";
+    private static final String RES_TYPE_NAME_DRAWABLE = "drawable";
+    private static final String RES_TYPE_NAME_MIPMAP = "mipmap";
 
     /**
      * 属性的名字
@@ -45,6 +47,14 @@ public abstract class AbstractSkinAttr implements Cloneable {
      * @param view
      */
     protected abstract void applySkin(View view);
+
+    /**
+     * 判断是否是drawable或者mipmap
+     * @return
+     */
+    protected boolean isDrawable() {
+        return attrValueTypeName.equals(RES_TYPE_NAME_DRAWABLE) || attrValueTypeName.equals(RES_TYPE_NAME_MIPMAP);
+    }
 
     @Override
     public AbstractSkinAttr clone() {

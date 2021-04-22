@@ -2,6 +2,7 @@ package com.wumeng.changeskin_android.skin;
 
 import android.content.Context;
 
+import com.wumeng.changeskin_android.util.ContextHolder;
 import com.wumeng.changeskin_android.util.SkinPreferencesUtil;
 
 import java.util.ArrayList;
@@ -28,6 +29,7 @@ public class SkinManager {
 
     /**
      * 初始化，在Application初始化
+     *
      * @param context
      */
     public static void init(Context context) {
@@ -36,19 +38,33 @@ public class SkinManager {
         if ("".equals(savedSkinName)) {
             savedSkinName = SkinConfig.SKIN_NAME_DEFAULT;
         }
-        CURRENT_SKIN = savedSkinName;
+        CURRENT_SKIN = SkinConfig.SKIN_NAME_NIGHT;
     }
 
     /**
      * 获取保存的皮肤名字
+     *
      * @return
      */
     private static String getSavedSkinName() {
-        return SkinPreferencesUtil.getString(mContext,SkinConfig.PREF_SKIN_NAME,SkinConfig.SKIN_NAME_DEFAULT);
+        return SkinPreferencesUtil.getString(mContext, SkinConfig.PREF_SKIN_NAME, SkinConfig.SKIN_NAME_DEFAULT);
+    }
+
+    /**
+     * 获取Context实例
+     *
+     * @return
+     */
+    public static Context getContext() {
+        if (mContext == null) {
+            mContext = ContextHolder.getContext();
+        }
+        return mContext;
     }
 
     /**
      * 将ISkinUpdateListener实现类加入列表
+     *
      * @param observer
      */
     public static void attach(ISkinUpdateListener observer) {
@@ -63,6 +79,7 @@ public class SkinManager {
 
     /**
      * 判断是否是默认皮肤
+     *
      * @return
      */
     public static boolean isExternalSkin() {
@@ -71,6 +88,7 @@ public class SkinManager {
 
     /**
      * 当前皮肤是否是默认皮肤
+     *
      * @return
      */
     public static boolean isCurrentDefaultSkin() {
@@ -78,7 +96,17 @@ public class SkinManager {
     }
 
     /**
+     * 凭借资源的名字
+     * @param value
+     * @return
+     */
+    public static String wrapper(String value) {
+        return isCurrentDefaultSkin() ? value : value + SkinConfig.SKIN_SEPARATOR + CURRENT_SKIN;
+    }
+
+    /**
      * 将ISkinUpdateListener实现类移除列表
+     *
      * @param observer
      */
     public static void detach(ISkinUpdateListener observer) {

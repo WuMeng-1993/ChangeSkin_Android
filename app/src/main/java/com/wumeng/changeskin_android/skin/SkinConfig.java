@@ -18,13 +18,23 @@ public class SkinConfig {
     public static final String SKIN_NAME_DEFAULT = "default";
 
     /**
+     * 黑夜的皮肤的名字
+     */
+    public static final String SKIN_NAME_NIGHT = "night";
+
+    /**
      * 换肤的命名空间
      */
     public static final String NAME_SPACE = "http://schemas.android.com/android/skin";
 
     /**
-     *
+     * 是否支持换肤的属性
      */
     public static final String ATTR_SKIN_ENABLE = "enable";
+
+    /**
+     * 换肤名称的拼接符
+     */
+    public static final String SKIN_SEPARATOR = "_";
 
 }

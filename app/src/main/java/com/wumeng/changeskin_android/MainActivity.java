@@ -27,13 +27,11 @@ public class MainActivity extends AppCompatActivity implements ISkinUpdateListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
         // 绑定换肤接口
         SkinManager.attach(this);
-
-        //
-        View view = LayoutInflater.from(ContextHolder.getContext()).inflate(R.layout.activity_main,null);
-        mSkinItemMap = ParseAttrUtil.xmlLayoutParser(view,R.layout.activity_main);
+        View rootView = getLayoutInflater().inflate(R.layout.activity_main,null);
+        setContentView(rootView);
+        mSkinItemMap = ParseAttrUtil.xmlLayoutParser(rootView,R.layout.activity_main);
     }
 
     /**

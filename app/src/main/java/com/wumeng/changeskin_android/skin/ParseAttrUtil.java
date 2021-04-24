@@ -74,9 +74,6 @@ public class ParseAttrUtil {
                             try {
                                 // 此ID是属性资源的ID
                                 int id = Integer.parseInt(attrValue.substring(1));
-                                if (id == 0) {
-                                    continue;
-                                }
 
                                 // common_100dp
                                 String entryName = ContextHolder.getContext().getResources().getResourceEntryName(id);
